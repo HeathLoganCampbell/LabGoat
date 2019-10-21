@@ -1,4 +1,4 @@
-package com.heathlogancampbell.dungeongoat;
+package com.heathlogancampbell.engine;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -9,19 +9,21 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
-import com.heathlogancampbell.dungeongoat.graphics.Screen;
-import com.heathlogancampbell.dungeongoat.inputs.InputListener;
+import com.heathlogancampbell.engine.graphics.Screen;
+import com.heathlogancampbell.engine.inputs.InputListener;
+import lombok.Getter;
+import lombok.Setter;
 
 public class Engine<G extends Game> extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
 	
-	
-	
 	private boolean running;
 	private Thread thread;
 	private JFrame frame;
-	
+
+	@Getter @Setter
+	private double fps = 60;
 	private int width;
 	private int height;
 	private int scale;
@@ -141,7 +143,7 @@ public class Engine<G extends Game> extends Canvas implements Runnable
 		int frames = 0;
 
 		double unprocessedSeconds = 0;
-		double fps = 60.0;
+		double fps = getFps();
 		long lastTime = System.nanoTime();
 		double secondsPerTick = 1 / fps;
 		int tickCount = 0;

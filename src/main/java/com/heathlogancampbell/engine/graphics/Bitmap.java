@@ -1,4 +1,4 @@
-package com.heathlogancampbell.dungeongoat.graphics;
+package com.heathlogancampbell.engine.graphics;
 
 public class Bitmap
 {

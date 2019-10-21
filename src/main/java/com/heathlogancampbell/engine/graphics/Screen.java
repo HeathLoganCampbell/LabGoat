@@ -1,6 +1,6 @@
-package com.heathlogancampbell.dungeongoat.graphics;
+package com.heathlogancampbell.engine.graphics;
 
-import com.heathlogancampbell.dungeongoat.Game;
+import com.heathlogancampbell.engine.Game;
 
 public class Screen<G extends Game> extends Bitmap
 {

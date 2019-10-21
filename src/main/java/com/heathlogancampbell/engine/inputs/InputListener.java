@@ -1,4 +1,4 @@
-package com.heathlogancampbell.dungeongoat.inputs;
+package com.heathlogancampbell.engine.inputs;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
