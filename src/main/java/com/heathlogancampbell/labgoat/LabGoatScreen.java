@@ -18,6 +18,7 @@ public class LabGoatScreen  extends Screen<LabGoatGame>
     {
         this.clearScreen();
 
+        this.setPixel(10, 10, 0xffffff);
 //        game.map.render(this, game);
     }
 }

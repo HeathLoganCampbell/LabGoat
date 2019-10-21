@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args)
     {
-        Engine<LabGoatGame> engine = new Engine<LabGoatGame>(400, 300, 2);
+        Engine<LabGoatGame> engine = new Engine<>(300, 150, 4);
         engine.setScreen(new LabGoatScreen(engine.getScreenWidth(), engine.getScreenHeight()));
         engine.setGame(new LabGoatGame(engine.getWidth(), engine.getHeight()));
         engine.setTitle("Lab Goat");

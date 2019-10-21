@@ -22,8 +22,8 @@ public class Engine<G extends Game> extends Canvas implements Runnable
 	private Thread thread;
 	private JFrame frame;
 
-	@Getter @Setter
-	private double fps = 60;
+	@Setter
+	private double framesPerSecond = 60;
 	private int width;
 	private int height;
 	private int scale;
@@ -143,7 +143,7 @@ public class Engine<G extends Game> extends Canvas implements Runnable
 		int frames = 0;
 
 		double unprocessedSeconds = 0;
-		double fps = getFps();
+		double fps = this.framesPerSecond;
 		long lastTime = System.nanoTime();
 		double secondsPerTick = 1 / fps;
 		int tickCount = 0;
