@@ -29,3 +29,6 @@ so the door will open to advance to the next level.
 
 
 ## Versions
+### v0.2
+We have assets loading from pngs and tiled printing to the screen.
+![Photo of the 0.2 version, just a picture moving on the screen](./readme-resources/v0.2.png)
