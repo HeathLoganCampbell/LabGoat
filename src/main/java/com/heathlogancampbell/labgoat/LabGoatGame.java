@@ -15,6 +15,8 @@ public class LabGoatGame extends Game
 {
     @Getter
     private Bitmap tiles;
+    @Getter
+    private int tick = 0;
 
     public LabGoatGame(int width, int height)
     {
@@ -30,6 +32,6 @@ public class LabGoatGame extends Game
     @Override
     public void tick(InputListener inputListener)
     {
-
+        tick++;
     }
 }

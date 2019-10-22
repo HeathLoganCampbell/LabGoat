@@ -1,8 +1,12 @@
 package com.heathlogancampbell.engine.graphics;
 
+import lombok.Getter;
+
 public class Bitmap
 {
+	@Getter
 	public final int width;
+	@Getter
 	public final int height;
 	public final int area;
 	public final int[] pixels;
@@ -26,6 +30,22 @@ public class Bitmap
 				if (xPix < 0 || xPix >= width) continue;
 
 				int src = bitmap.pixels[x + y * bitmap.width];
+				pixels[xPix + yPix * width] = src;
+			}
+		}
+	}
+
+	public void drawSegment(Bitmap childBitmap, int innerX, int innerY, int innerWidth, int innerHeight, int xOffset, int yOffset)
+	{
+		for (int y = innerY; y < innerHeight; y++) {
+			int yPix = y + yOffset;
+			if (yPix < 0 || yPix >= height) continue;
+
+			for (int x = innerX; x < innerWidth; x++) {
+				int xPix = x + xOffset;
+				if (xPix < 0 || xPix >= width) continue;
+
+				int src = childBitmap.pixels[x + y * childBitmap.width];
 				pixels[xPix + yPix * width] = src;
 			}
 		}

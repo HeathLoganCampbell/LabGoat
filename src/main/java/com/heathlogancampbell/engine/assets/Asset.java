@@ -12,8 +12,11 @@ import java.util.stream.Stream;
 
 public class Asset
 {
+    public static final int TRANSPARENT_COLOR = 0xff00ff;
+    public static final int RGB_MASK = 0xFFFFFF;
+
     public static Bitmap loadBitmap(String file) throws IOException {
-        InputStream stream = Main.class.getClassLoader().getResourceAsStream(file);
+        InputStream stream = Asset.class.getClassLoader().getResourceAsStream(file);
         BufferedImage image = ImageIO.read(stream);
         int width = image.getWidth();
         int height = image.getHeight();
@@ -21,7 +24,8 @@ public class Asset
 
         int[] pixels = image.getRGB(0, 0, width, height, null, 0, width);
         for (int i = 0; i < pixels.length; i++) {
-            bitmap.pixels[i] = (pixels[i]);
+            if((pixels[i] & RGB_MASK) != TRANSPARENT_COLOR)
+               bitmap.pixels[i] = (pixels[i]);
         }
         return bitmap;
     }
