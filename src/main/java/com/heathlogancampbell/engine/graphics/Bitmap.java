@@ -37,12 +37,12 @@ public class Bitmap
 
 	public void drawSegment(Bitmap childBitmap, int innerX, int innerY, int innerWidth, int innerHeight, int xOffset, int yOffset)
 	{
-		for (int y = innerY; y < innerHeight; y++) {
-			int yPix = y + yOffset;
+		for (int y = innerY; y < innerY + innerHeight; y++) {
+			int yPix = y + yOffset - innerY;
 			if (yPix < 0 || yPix >= height) continue;
 
-			for (int x = innerX; x < innerWidth; x++) {
-				int xPix = x + xOffset;
+			for (int x = innerX; x < innerX + innerWidth; x++) {
+				int xPix = x + xOffset - innerX;
 				if (xPix < 0 || xPix >= width) continue;
 
 				int src = childBitmap.pixels[x + y * childBitmap.width];

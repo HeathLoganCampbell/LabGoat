@@ -19,6 +19,7 @@ public class LabGoatScreen  extends Screen<LabGoatGame>
     {
         this.clearScreen();
 
+        game.getLevel().draw(this);
         game.getGoat().draw(this, game.getTick() % this.getWidth(), 0);
     }
 }

@@ -5,6 +5,8 @@ import com.heathlogancampbell.engine.assets.Asset;
 import com.heathlogancampbell.engine.graphics.Bitmap;
 import com.heathlogancampbell.engine.graphics.Sprite;
 import com.heathlogancampbell.engine.inputs.InputListener;
+import com.heathlogancampbell.labgoat.level.Level;
+import com.heathlogancampbell.labgoat.tiles.TileBase;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -20,6 +22,8 @@ public class LabGoatGame extends Game
     private int tick = 0;
     @Getter
     private Sprite goat;
+    @Getter
+    private Level level;
 
     public LabGoatGame(int width, int height)
     {
@@ -31,6 +35,14 @@ public class LabGoatGame extends Game
             System.out.println("Failed to load assets");
             e.printStackTrace();
         }
+
+        TileBase.initTiles(this.tiles);
+        this.level = new Level("Basic", new TileBase[][]{
+            { TileBase.WALL, TileBase.WALL, TileBase.WALL, TileBase.WALL},
+            { TileBase.WALL, TileBase.FLOOR, TileBase.FLOOR, TileBase.WALL },
+            { TileBase.WALL, TileBase.FLOOR, TileBase.FLOOR, TileBase.WALL},
+            { TileBase.WALL, TileBase.WALL, TileBase.WALL, TileBase.WALL},
+        });
     }
 
     @Override
