@@ -4,6 +4,9 @@ import lombok.Getter;
 
 public class Bitmap
 {
+	public static final int TRANSPARENT_COLOR = 0xff00ff;
+	public static final int RGB_MASK = 0xFFFFFF;
+
 	@Getter
 	public final int width;
 	@Getter
@@ -30,7 +33,8 @@ public class Bitmap
 				if (xPix < 0 || xPix >= width) continue;
 
 				int src = bitmap.pixels[x + y * bitmap.width];
-				pixels[xPix + yPix * width] = src;
+				if((src & RGB_MASK) != TRANSPARENT_COLOR)
+					pixels[xPix + yPix * width] = src;
 			}
 		}
 	}
@@ -46,7 +50,8 @@ public class Bitmap
 				if (xPix < 0 || xPix >= width) continue;
 
 				int src = childBitmap.pixels[x + y * childBitmap.width];
-				pixels[xPix + yPix * width] = src;
+				if((src & RGB_MASK) != TRANSPARENT_COLOR)
+					pixels[xPix + yPix * width] = src;
 			}
 		}
 	}
