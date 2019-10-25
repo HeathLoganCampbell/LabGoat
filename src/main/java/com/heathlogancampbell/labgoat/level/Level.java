@@ -3,6 +3,7 @@ package com.heathlogancampbell.labgoat.level;
 import com.heathlogancampbell.engine.graphics.Bitmap;
 import com.heathlogancampbell.engine.inputs.InputListener;
 import com.heathlogancampbell.labgoat.commons.Location;
+import com.heathlogancampbell.labgoat.commons.Velocity;
 import com.heathlogancampbell.labgoat.entity.EntityBase;
 import com.heathlogancampbell.labgoat.tiles.TileBase;
 import lombok.AllArgsConstructor;
@@ -59,10 +60,34 @@ public class Level
         }
     }
 
+    public void pushOn(Location location, Velocity velocity, EntityBase pusherEntity)
+    {
+        for (EntityBase entity : this.entities) {
+            if( ((int) location.getY()) == ((int) entity.getLocation().getY()) &&
+                    ((int) location.getX()) == ((int) entity.getLocation().getX()) )
+            {
+                //found our entity
+                Location newLoc = entity.getLocation().clone();
+                newLoc.addVelocity(velocity);
+                if(isMovable(newLoc))
+                {
+                    entity.getLocation().addVelocity(velocity);
+                }
+            }
+        }
+    }
+
     public boolean isMovable(Location location)
     {
         if(location.getY() >= this.tiles.length) return false;
         if(location.getX() >= this.tiles[ (int) location.getY()].length) return false;
+        for (EntityBase entity : this.entities) {
+            if( ((int) location.getY()) == ((int) entity.getLocation().getY()) &&
+                    ((int) location.getX()) == ((int) entity.getLocation().getX()) )
+            {
+                return false;
+            }
+        }
         return !this.tiles[(int) location.getY()][ (int) location.getX()].isSolid();
     }
 

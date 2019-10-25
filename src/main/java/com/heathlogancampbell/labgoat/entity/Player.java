@@ -68,6 +68,7 @@ public class Player extends EntityBase
         Location newLoc = this.getLocation().clone();
         newLoc.addVelocity(this.getVelocity());
 
+        game.getLevel().pushOn(newLoc, this.getVelocity(), this);
         if(game.getLevel().isMovable(newLoc))
         {
             this.getLocation().addVelocity(this.getVelocity());

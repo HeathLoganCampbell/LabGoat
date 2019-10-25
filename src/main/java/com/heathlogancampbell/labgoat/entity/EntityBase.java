@@ -19,6 +19,9 @@ public class EntityBase
     @Getter
     @Setter
     private Velocity velocity;
+    @Getter
+    @Setter
+    private boolean solid = false;
 
     public void draw(Bitmap screen)
     {

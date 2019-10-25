@@ -18,6 +18,7 @@ public class Box extends EntityBase
         this.sprite = new Sprite(bitmap, 32, 32, 32 * 2,0);
         this.setLocation(new Location(1, 1));
         this.setVelocity(new Velocity(0, 0));
+        this.setSolid(true);
     }
 
     @Override
