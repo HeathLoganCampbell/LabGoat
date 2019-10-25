@@ -29,7 +29,11 @@ so the door will open to advance to the next level.
 
 
 ## To Do
-* interactions
+* add world loading method
+* Words
+* Win state
+* restart level
+
 * Offer multiple levels
 * Main Menu
 * Level editor
