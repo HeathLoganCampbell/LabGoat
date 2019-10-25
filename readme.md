@@ -49,3 +49,8 @@ We have assets loading from pngs and tiled printing to the screen.
 ### v0.3
 We have objects that we can now collide with!
 ![Photo of the 0.3 version, we have objects we can now collide with](./readme-resources/v0.3.png)
+
+
+### v0.4
+We can now push boxes
+![Photo of the 0.4 version](./readme-resources/v0.4.png)
