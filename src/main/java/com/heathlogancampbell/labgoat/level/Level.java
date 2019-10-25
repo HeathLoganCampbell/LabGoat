@@ -7,6 +7,7 @@ import com.heathlogancampbell.labgoat.commons.Velocity;
 import com.heathlogancampbell.labgoat.entity.EntityBase;
 import com.heathlogancampbell.labgoat.tiles.TileBase;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -23,6 +24,7 @@ public class Level
     @NonNull
     public int[][] data;
 
+    @Getter
     private List<EntityBase> entities = new LinkedList<>();
 
     public void addEntity(EntityBase entity)
@@ -69,7 +71,7 @@ public class Level
                 //found our entity
                 Location newLoc = entity.getLocation().clone();
                 newLoc.addVelocity(velocity);
-                if(isMovable(newLoc))
+                if(isMovable(newLoc) && entity.isPushable())
                 {
                     entity.getLocation().addVelocity(velocity);
                 }
@@ -83,7 +85,8 @@ public class Level
         if(location.getX() >= this.tiles[ (int) location.getY()].length) return false;
         for (EntityBase entity : this.entities) {
             if( ((int) location.getY()) == ((int) entity.getLocation().getY()) &&
-                    ((int) location.getX()) == ((int) entity.getLocation().getX()) )
+                    ((int) location.getX()) == ((int) entity.getLocation().getX())
+                    && entity.isSolid())
             {
                 return false;
             }

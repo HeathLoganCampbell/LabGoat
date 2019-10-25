@@ -19,6 +19,7 @@ public class Box extends EntityBase
         this.setLocation(new Location(1, 1));
         this.setVelocity(new Velocity(0, 0));
         this.setSolid(true);
+        this.setPushable(true);
     }
 
     @Override

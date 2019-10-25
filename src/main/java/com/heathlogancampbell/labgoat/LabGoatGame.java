@@ -8,6 +8,7 @@ import com.heathlogancampbell.engine.inputs.InputListener;
 import com.heathlogancampbell.labgoat.commons.Location;
 import com.heathlogancampbell.labgoat.entity.Box;
 import com.heathlogancampbell.labgoat.entity.Player;
+import com.heathlogancampbell.labgoat.entity.PressurePlate;
 import com.heathlogancampbell.labgoat.level.Level;
 import com.heathlogancampbell.labgoat.tiles.TileBase;
 import lombok.Getter;
@@ -58,6 +59,10 @@ public class LabGoatGame extends Game
         Box box2 = new Box(this, tiles);
         box2.setLocation(new Location(2, 2));
 
+        PressurePlate presurePlate = new PressurePlate(this, tiles);
+        presurePlate.getLocation().setX(2);
+
+        this.level.addEntity(presurePlate);
         this.level.addEntity(new Player(this, tiles));
         this.level.addEntity(box);
         this.level.addEntity(box2);

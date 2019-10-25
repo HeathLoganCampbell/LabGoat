@@ -22,6 +22,9 @@ public class EntityBase
     @Getter
     @Setter
     private boolean solid = false;
+    @Getter
+    @Setter
+    private boolean pushable = false;
 
     public void draw(Bitmap screen)
     {
