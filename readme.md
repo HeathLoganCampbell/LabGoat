@@ -28,6 +28,19 @@ so the door will open to advance to the next level.
 * You're a drawf trying to get your gold?
 
 
+## To Do
+* interactions
+* Offer multiple levels
+* Main Menu
+* Level editor
+* Particles
+* Saving mechs
+* Maybe a solver?
+
+## resources
+*  http://weetu.net/Timo-Virkkala-Solving-Sokoban-Masters-Thesis.pdf
+
+
 ## Versions
 ### v0.2
 We have assets loading from pngs and tiled printing to the screen.
