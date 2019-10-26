@@ -10,7 +10,7 @@ public class WallTile extends TileBase
     private Sprite walledSprite;
 
     public WallTile(Sprite flatSprite, Sprite walledSprite) {
-        super(flatSprite);
+        super("WALL", flatSprite);
 
         this.walledSprite = walledSprite;
     }

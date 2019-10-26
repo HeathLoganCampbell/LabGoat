@@ -11,15 +11,16 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
+import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.List;
 
 @RequiredArgsConstructor
 public class Level
 {
-    @NonNull
+    @NonNull @Getter
     private String name;
-    @NonNull
+    @NonNull @Getter
     public TileBase[][] tiles;
     @NonNull
     public int[][] data;
@@ -34,6 +35,13 @@ public class Level
 
     public void tick(InputListener inputListener)
     {
+        if(inputListener.isPressed(KeyEvent.VK_SPACE))
+        {
+            //reset level
+            System.out.println("Level restart");
+            return;
+        }
+
         for (EntityBase entity : this.entities) {
             entity.tick(inputListener);
         }

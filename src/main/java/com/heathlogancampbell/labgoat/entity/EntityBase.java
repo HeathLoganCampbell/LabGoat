@@ -2,6 +2,7 @@ package com.heathlogancampbell.labgoat.entity;
 
 import com.heathlogancampbell.engine.graphics.Bitmap;
 import com.heathlogancampbell.engine.inputs.InputListener;
+import com.heathlogancampbell.labgoat.LabGoatGame;
 import com.heathlogancampbell.labgoat.commons.Location;
 import com.heathlogancampbell.labgoat.commons.Velocity;
 import lombok.Getter;
@@ -13,6 +14,9 @@ import lombok.Setter;
 public class EntityBase
 {
     public static final int ENTITY_WIDTH = 32;
+
+    @Getter
+    private EntityType entityType;
     @Getter
     @Setter
     private Location location;
@@ -25,6 +29,17 @@ public class EntityBase
     @Getter
     @Setter
     private boolean pushable = false;
+    @Getter
+    private LabGoatGame game;
+
+
+    public EntityBase(LabGoatGame game, EntityType entityType, Location location)
+    {
+        this.game = game;
+        this.entityType = entityType;
+        this.location = location;
+        this.velocity = new Velocity(0, 0);
+    }
 
     public void draw(Bitmap screen)
     {

@@ -9,15 +9,12 @@ import com.heathlogancampbell.labgoat.commons.Velocity;
 
 public class Box extends EntityBase
 {
-    private LabGoatGame game;
     private Sprite sprite;
 
-    public Box(LabGoatGame game, Bitmap bitmap)
+    public Box(LabGoatGame game, Bitmap bitmap, Location location)
     {
-        this.game = game;
+        super(game, EntityType.BOX, location);
         this.sprite = new Sprite(bitmap, 32, 32, 32 * 2,0);
-        this.setLocation(new Location(1, 1));
-        this.setVelocity(new Velocity(0, 0));
         this.setSolid(true);
         this.setPushable(true);
     }

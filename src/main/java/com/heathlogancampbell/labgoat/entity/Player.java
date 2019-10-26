@@ -14,16 +14,12 @@ public class Player extends EntityBase
 {
     private static final double SPEED_UNIT = 1;
     private Sprite sprite;
-    private LabGoatGame game;
     private Location drawLocation;
 
-    public Player(LabGoatGame game, Bitmap bitmap)
+    public Player(LabGoatGame game, Bitmap bitmap, Location location)
     {
-        this.game = game;
+        super(game, EntityType.PLAYER, location);
         this.sprite = new Sprite(bitmap, EntityBase.ENTITY_WIDTH, EntityBase.ENTITY_WIDTH, 0,0);
-        this.setLocation(new Location(1, 1));
-        this.setVelocity(new Velocity(0, 0));
-        this.drawLocation = this.getLocation().clone();
     }
 
     @Override
@@ -68,8 +64,8 @@ public class Player extends EntityBase
         Location newLoc = this.getLocation().clone();
         newLoc.addVelocity(this.getVelocity());
 
-        game.getLevel().pushOn(newLoc, this.getVelocity(), this);
-        if(game.getLevel().isMovable(newLoc))
+        this.getGame().getLevel().pushOn(newLoc, this.getVelocity(), this);
+        if(this.getGame().getLevel().isMovable(newLoc))
         {
             this.getLocation().addVelocity(this.getVelocity());
         }

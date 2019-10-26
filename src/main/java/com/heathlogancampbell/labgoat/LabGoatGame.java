@@ -1,5 +1,6 @@
 package com.heathlogancampbell.labgoat;
 
+import com.google.gson.Gson;
 import com.heathlogancampbell.engine.Game;
 import com.heathlogancampbell.engine.assets.Asset;
 import com.heathlogancampbell.engine.graphics.Bitmap;
@@ -10,6 +11,8 @@ import com.heathlogancampbell.labgoat.entity.Box;
 import com.heathlogancampbell.labgoat.entity.Player;
 import com.heathlogancampbell.labgoat.entity.PressurePlate;
 import com.heathlogancampbell.labgoat.level.Level;
+import com.heathlogancampbell.labgoat.level.LevelManager;
+import com.heathlogancampbell.labgoat.level.format.BasicLevelFormat;
 import com.heathlogancampbell.labgoat.tiles.TileBase;
 import lombok.Getter;
 
@@ -26,6 +29,8 @@ public class LabGoatGame extends Game
     private int tick = 0;
     @Getter
     private Level level;
+
+    private LevelManager levelManager;
 
     public LabGoatGame(int width, int height)
     {
@@ -53,19 +58,26 @@ public class LabGoatGame extends Game
                     { 0, 0, 0, 0, 0, 0, 0},
             });
 
-        Box box = new Box(this, tiles);
-        box.setLocation(new Location(3, 2));
+//        new BasicLevelFormat().loadLevel("levels/level1.level");
 
-        Box box2 = new Box(this, tiles);
-        box2.setLocation(new Location(2, 2));
+        this.levelManager = new LevelManager(this, tiles);
+        Box box = new Box(this, tiles, new Location(3, 2));
 
-        PressurePlate presurePlate = new PressurePlate(this, tiles);
-        presurePlate.getLocation().setX(2);
+        Box box2 = new Box(this, tiles, new Location(2, 2));
+
+        PressurePlate presurePlate = new PressurePlate(this, tiles, new Location(2, 1));
 
         this.level.addEntity(presurePlate);
-        this.level.addEntity(new Player(this, tiles));
+        this.level.addEntity(new Player(this, tiles,  new Location(1, 1)));
         this.level.addEntity(box);
         this.level.addEntity(box2);
+
+        levelManager.save(level, "YeetV1");
+        this.level = this.levelManager.load("YeetV1");
+
+        BasicLevelFormat levelFormat = new BasicLevelFormat();
+        String json = levelFormat.serialize(level);
+        this.level = levelFormat.deserialize(json, this, tiles);
     }
 
     @Override

@@ -12,12 +12,16 @@ public class TileBase
 {
     public static int TILE_WIDTH = 32;
     @Getter
+    private String name;
+    @Getter
     private Sprite sprite;
     @Getter @Setter
     private boolean solid = true;
 
-    public TileBase(Sprite sprite)
+
+    public TileBase(String name, Sprite sprite)
     {
+        this.name = name;
         this.sprite = sprite;
     }
 
@@ -35,4 +39,11 @@ public class TileBase
 
     public static FloorTile FLOOR;
     public static WallTile WALL;
+
+    public static TileBase parseTile(String name)
+    {
+        if(name.equalsIgnoreCase("FLOOR")) return FLOOR;
+        if(name.equalsIgnoreCase("WALL")) return WALL;
+        return null;
+    }
 }

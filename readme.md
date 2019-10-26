@@ -33,6 +33,7 @@ so the door will open to advance to the next level.
 * Words
 * Win state
 * restart level
+* smoother location change animation
 
 * Offer multiple levels
 * Main Menu
