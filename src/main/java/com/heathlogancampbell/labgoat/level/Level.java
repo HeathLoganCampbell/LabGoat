@@ -1,11 +1,14 @@
 package com.heathlogancampbell.labgoat.level;
 
 import com.heathlogancampbell.engine.graphics.Bitmap;
+import com.heathlogancampbell.engine.graphics.Font;
 import com.heathlogancampbell.engine.inputs.InputListener;
 import com.heathlogancampbell.labgoat.LabGoatGame;
 import com.heathlogancampbell.labgoat.commons.Location;
 import com.heathlogancampbell.labgoat.commons.Velocity;
+import com.heathlogancampbell.labgoat.entity.Box;
 import com.heathlogancampbell.labgoat.entity.EntityBase;
+import com.heathlogancampbell.labgoat.entity.PressurePlate;
 import com.heathlogancampbell.labgoat.tiles.TileBase;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,12 +28,31 @@ public class Level
     public TileBase[][] tiles;
     @NonNull
     public int[][] data;
+    private boolean won = false;
 
     @NonNull @Getter
     private LabGoatGame game;
 
     @Getter
     private List<EntityBase> entities = new LinkedList<>();
+
+    /**
+     * @return has won, all presureplates are down
+     */
+    public boolean hasWon()
+    {
+        for (EntityBase entity : this.entities)
+        {
+            if(entity instanceof PressurePlate)
+            {
+                PressurePlate presurePlate = (PressurePlate) entity;
+                if(!presurePlate.isActive() || !(presurePlate.getActiveEntity() instanceof Box))
+                    return false;
+            }
+        }
+
+        return true;
+    }
 
     public void addEntity(EntityBase entity)
     {
@@ -50,6 +72,10 @@ public class Level
             entity.tick(inputListener);
         }
 
+        if(hasWon())
+        {
+            this.won = true;
+        }
         //move x -> y
 
         //Check clip
@@ -71,6 +97,11 @@ public class Level
         for (EntityBase entity : this.entities)
         {
             entity.draw(screen);
+        }
+
+        if(this.won)
+        {
+            Font.text("You won!", screen, 15, 15,0xFF00FF);
         }
     }
 

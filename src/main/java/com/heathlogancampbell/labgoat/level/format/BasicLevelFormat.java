@@ -66,8 +66,8 @@ public class BasicLevelFormat extends LevelFormat
 
                 try {
                     Location loc = new Location(x, y);
-                    Constructor<?> constructorEntity = entityType.getClazz().getConstructor(LabGoatGame.class, Bitmap.class, Location.class);
-                    EntityBase entitybase = (EntityBase) constructorEntity.newInstance(game, bitmap, loc);
+                    Constructor<?> constructorEntity = entityType.getClazz().getConstructor(Level.class, Bitmap.class, Location.class);
+                    EntityBase entitybase = (EntityBase) constructorEntity.newInstance(null, bitmap, loc);
                     entities.add(entitybase);
                 } catch (NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
                     e.printStackTrace();
@@ -82,7 +82,11 @@ public class BasicLevelFormat extends LevelFormat
             tiles[i] = mapTiles.get(i);
 
         level = new Level("derp", tiles,new int[tiles.length][tiles[0].length], game);
-        entities.forEach(level::addEntity);
+        final Level finalLevel = level;
+        entities.forEach( entity -> {
+            finalLevel.addEntity(entity);
+            entity.setLevel(finalLevel);
+        });
 
         return level;
     }

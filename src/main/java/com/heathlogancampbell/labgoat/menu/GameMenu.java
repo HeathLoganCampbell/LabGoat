@@ -10,6 +10,7 @@ import com.heathlogancampbell.labgoat.entity.Player;
 import com.heathlogancampbell.labgoat.entity.PressurePlate;
 import com.heathlogancampbell.labgoat.level.Level;
 import com.heathlogancampbell.labgoat.level.LevelManager;
+import com.heathlogancampbell.labgoat.level.format.BasicLevelFormat;
 import com.heathlogancampbell.labgoat.tiles.TileBase;
 import lombok.Getter;
 
@@ -26,7 +27,16 @@ public class GameMenu extends Menu
         this.game = game;
         this.tiles = tiles;
 
-        this.loadBasicLevel();
+        this.levelManager = new LevelManager(game, tiles);
+        this.level = this.levelManager.load("YeetV1");
+//        this.loadBasicLevel();
+
+
+//        this.levelManager = new LevelManager(this, tiles);
+
+
+//        levelManager.save(level, "YeetV1");
+//        this.level = this.levelManager.load("YeetV1");
     }
 
     @Override

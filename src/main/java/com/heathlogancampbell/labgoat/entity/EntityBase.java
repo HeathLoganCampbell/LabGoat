@@ -31,6 +31,7 @@ public class EntityBase
     @Setter
     private boolean pushable = false;
     @Getter
+    @Setter
     private Level level;
 
 

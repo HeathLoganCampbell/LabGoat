@@ -13,11 +13,11 @@ public class Font
         Font.fontBitMap = fontBitMap;
     }
 
-    public static void text(String msg, Screen screen, int x, int y) {
+    public static void text(String msg, Bitmap screen, int x, int y) {
         text(msg, screen, x, y, 0xFFFFFF);
     }
 
-    public static void text(String msg, Screen screen, int x, int y, int color) {
+    public static void text(String msg, Bitmap screen, int x, int y, int color) {
         msg = msg.toUpperCase();
         for (int i = 0; i < msg.length(); i++) {
             int ix = chars.indexOf(msg.charAt(i));

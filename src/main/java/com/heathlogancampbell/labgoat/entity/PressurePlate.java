@@ -7,12 +7,16 @@ import com.heathlogancampbell.labgoat.LabGoatGame;
 import com.heathlogancampbell.labgoat.commons.Location;
 import com.heathlogancampbell.labgoat.commons.Velocity;
 import com.heathlogancampbell.labgoat.level.Level;
+import lombok.Getter;
 
 public class PressurePlate extends EntityBase
 {
     private Sprite sprite;
     private Sprite triggerDown;
+    @Getter
     private boolean active = false;
+    @Getter
+    private EntityBase activeEntity = null;
 
     public PressurePlate(Level level, Bitmap bitmap, Location location)
     {
@@ -45,12 +49,15 @@ public class PressurePlate extends EntityBase
     {
         if(this.getLevel().getGame().getTick() % 10 < 5) return;
         this.active = false;
+        this.activeEntity = null;
         for (EntityBase entity : this.getLevel().getEntities()) {
             if (((int) this.getLocation().getY()) == ((int) entity.getLocation().getY()) &&
                     ((int) this.getLocation().getX()) == ((int) entity.getLocation().getX()))
             {
-                if(this != entity)
-                   this.active = true;
+                if(this != entity) {
+                    this.active = true;
+                    this.activeEntity = entity;
+                }
             }
         }
 
