@@ -6,6 +6,8 @@ import com.heathlogancampbell.engine.graphics.Screen;
 import com.heathlogancampbell.engine.inputs.InputListener;
 import com.heathlogancampbell.labgoat.LabGoatGame;
 
+import java.awt.event.KeyEvent;
+
 public class MainMenu extends Menu
 {
     private LabGoatGame game;
@@ -24,14 +26,17 @@ public class MainMenu extends Menu
         screen.setPixel(2, 0, 0xFFCC00);
 
         Font.text("Lab Goat", screen, 5, 5, 0xFFFFFF);
-        Font.text("Play", screen, 5, 15, 0xFFFFFF);
-        Font.text("Help", screen, 5, 25, 0xFFFFFF);
+        Font.text("Hit ENTER to Play", screen, 5, 15, 0xFFFFFF);
+
         Font.text("Made by Heath Logan Campbell", screen, 5, screen.getHeight() - 10, 0xFFFFFF);
     }
 
     @Override
     public void tick(InputListener inputListener)
     {
-
+        if(inputListener.isPressed(KeyEvent.VK_ENTER))
+        {
+            this.game.getMenus().pop();
+        }
     }
 }

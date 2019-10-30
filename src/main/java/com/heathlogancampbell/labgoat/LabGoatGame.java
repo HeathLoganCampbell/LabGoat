@@ -34,7 +34,7 @@ public class LabGoatGame extends Game
     private int tick = 0;
 
     @Getter
-    private Stack<Menu> menu = new Stack<>();
+    private Stack<Menu> menus = new Stack<>();
 
     public LabGoatGame(int width, int height)
     {
@@ -46,8 +46,8 @@ public class LabGoatGame extends Game
             e.printStackTrace();
         }
         TileBase.initTiles(this.tiles);
-        menu.push(new GameMenu(this, tiles));
-        menu.push(new MainMenu(this));
+        menus.push(new GameMenu(this, tiles));
+        menus.push(new MainMenu(this));
 
         //Levels
 
@@ -67,7 +67,7 @@ public class LabGoatGame extends Game
     @Override
     public void tick(InputListener inputListener)
     {
-        Menu menu = this.menu.peek();
+        Menu menu = this.menus.peek();
         menu.tick(inputListener);
 
         tick++;

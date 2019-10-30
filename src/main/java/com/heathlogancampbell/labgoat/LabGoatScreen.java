@@ -20,7 +20,7 @@ public class LabGoatScreen  extends Screen<LabGoatGame>
     {
         this.clearScreen();
 
-        Menu menu = game.getMenu().peek();
+        Menu menu = game.getMenus().peek();
         menu.render(this);
     }
 }
