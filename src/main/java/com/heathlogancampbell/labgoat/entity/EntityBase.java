@@ -5,6 +5,7 @@ import com.heathlogancampbell.engine.inputs.InputListener;
 import com.heathlogancampbell.labgoat.LabGoatGame;
 import com.heathlogancampbell.labgoat.commons.Location;
 import com.heathlogancampbell.labgoat.commons.Velocity;
+import com.heathlogancampbell.labgoat.level.Level;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,12 +31,12 @@ public class EntityBase
     @Setter
     private boolean pushable = false;
     @Getter
-    private LabGoatGame game;
+    private Level level;
 
 
-    public EntityBase(LabGoatGame game, EntityType entityType, Location location)
+    public EntityBase(Level level, EntityType entityType, Location location)
     {
-        this.game = game;
+        this.level = level;
         this.entityType = entityType;
         this.location = location;
         this.velocity = new Velocity(0, 0);

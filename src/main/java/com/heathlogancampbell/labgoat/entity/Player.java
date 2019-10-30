@@ -7,6 +7,7 @@ import com.heathlogancampbell.engine.inputs.InputListener;
 import com.heathlogancampbell.labgoat.LabGoatGame;
 import com.heathlogancampbell.labgoat.commons.Location;
 import com.heathlogancampbell.labgoat.commons.Velocity;
+import com.heathlogancampbell.labgoat.level.Level;
 
 import java.awt.event.KeyEvent;
 
@@ -16,9 +17,9 @@ public class Player extends EntityBase
     private Sprite sprite;
     private Location drawLocation;
 
-    public Player(LabGoatGame game, Bitmap bitmap, Location location)
+    public Player(Level level, Bitmap bitmap, Location location)
     {
-        super(game, EntityType.PLAYER, location);
+        super(level, EntityType.PLAYER, location);
         this.sprite = new Sprite(bitmap, EntityBase.ENTITY_WIDTH, EntityBase.ENTITY_WIDTH, 0,0);
     }
 
@@ -64,8 +65,8 @@ public class Player extends EntityBase
         Location newLoc = this.getLocation().clone();
         newLoc.addVelocity(this.getVelocity());
 
-        this.getGame().getLevel().pushOn(newLoc, this.getVelocity(), this);
-        if(this.getGame().getLevel().isMovable(newLoc))
+        this.getLevel().pushOn(newLoc, this.getVelocity(), this);
+        if(this.getLevel().isMovable(newLoc))
         {
             this.getLocation().addVelocity(this.getVelocity());
         }

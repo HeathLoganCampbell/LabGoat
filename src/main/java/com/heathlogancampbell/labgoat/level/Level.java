@@ -2,6 +2,7 @@ package com.heathlogancampbell.labgoat.level;
 
 import com.heathlogancampbell.engine.graphics.Bitmap;
 import com.heathlogancampbell.engine.inputs.InputListener;
+import com.heathlogancampbell.labgoat.LabGoatGame;
 import com.heathlogancampbell.labgoat.commons.Location;
 import com.heathlogancampbell.labgoat.commons.Velocity;
 import com.heathlogancampbell.labgoat.entity.EntityBase;
@@ -24,6 +25,9 @@ public class Level
     public TileBase[][] tiles;
     @NonNull
     public int[][] data;
+
+    @NonNull @Getter
+    private LabGoatGame game;
 
     @Getter
     private List<EntityBase> entities = new LinkedList<>();

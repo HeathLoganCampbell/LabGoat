@@ -6,14 +6,15 @@ import com.heathlogancampbell.engine.inputs.InputListener;
 import com.heathlogancampbell.labgoat.LabGoatGame;
 import com.heathlogancampbell.labgoat.commons.Location;
 import com.heathlogancampbell.labgoat.commons.Velocity;
+import com.heathlogancampbell.labgoat.level.Level;
 
 public class Box extends EntityBase
 {
     private Sprite sprite;
 
-    public Box(LabGoatGame game, Bitmap bitmap, Location location)
+    public Box(Level level, Bitmap bitmap, Location location)
     {
-        super(game, EntityType.BOX, location);
+        super(level, EntityType.BOX, location);
         this.sprite = new Sprite(bitmap, 32, 32, 32 * 2,0);
         this.setSolid(true);
         this.setPushable(true);

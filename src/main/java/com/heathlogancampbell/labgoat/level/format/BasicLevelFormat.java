@@ -81,7 +81,7 @@ public class BasicLevelFormat extends LevelFormat
         for(int i = 0; i < mapTiles.size(); i++)
             tiles[i] = mapTiles.get(i);
 
-        level = new Level("derp", tiles,new int[tiles.length][tiles[0].length]);
+        level = new Level("derp", tiles,new int[tiles.length][tiles[0].length], game);
         entities.forEach(level::addEntity);
 
         return level;

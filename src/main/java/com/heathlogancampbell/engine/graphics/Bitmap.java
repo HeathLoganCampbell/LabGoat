@@ -41,6 +41,11 @@ public class Bitmap
 
 	public void drawSegment(Bitmap childBitmap, int innerX, int innerY, int innerWidth, int innerHeight, int xOffset, int yOffset)
 	{
+		drawSegment(childBitmap, innerX,  innerY,  innerWidth, innerHeight,  xOffset, yOffset, 0xFFFFFF);
+	}
+
+	public void drawSegment(Bitmap childBitmap, int innerX, int innerY, int innerWidth, int innerHeight, int xOffset, int yOffset, int color)
+	{
 		for (int y = innerY; y < innerY + innerHeight; y++) {
 			int yPix = y + yOffset - innerY;
 			if (yPix < 0 || yPix >= height) continue;
@@ -51,7 +56,7 @@ public class Bitmap
 
 				int src = childBitmap.pixels[x + y * childBitmap.width];
 				if((src & RGB_MASK) != TRANSPARENT_COLOR)
-					pixels[xPix + yPix * width] = src;
+					pixels[xPix + yPix * width] = src & color;
 			}
 		}
 	}

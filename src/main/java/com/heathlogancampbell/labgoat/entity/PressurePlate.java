@@ -6,6 +6,7 @@ import com.heathlogancampbell.engine.inputs.InputListener;
 import com.heathlogancampbell.labgoat.LabGoatGame;
 import com.heathlogancampbell.labgoat.commons.Location;
 import com.heathlogancampbell.labgoat.commons.Velocity;
+import com.heathlogancampbell.labgoat.level.Level;
 
 public class PressurePlate extends EntityBase
 {
@@ -13,9 +14,9 @@ public class PressurePlate extends EntityBase
     private Sprite triggerDown;
     private boolean active = false;
 
-    public PressurePlate(LabGoatGame game, Bitmap bitmap, Location location)
+    public PressurePlate(Level level, Bitmap bitmap, Location location)
     {
-        super(game, EntityType.PRESSURE_PLATE, location);
+        super(level, EntityType.PRESSURE_PLATE, location);
         this.sprite = new Sprite(bitmap, 32, 32, 0,32);
         this.triggerDown = new Sprite(bitmap, 32, 32, 32,32);
     }
@@ -42,9 +43,9 @@ public class PressurePlate extends EntityBase
     @Override
     public void tick(InputListener inputListener)
     {
-        if(this.getGame().getTick() % 10 < 5) return;
+        if(this.getLevel().getGame().getTick() % 10 < 5) return;
         this.active = false;
-        for (EntityBase entity : this.getGame().getLevel().getEntities()) {
+        for (EntityBase entity : this.getLevel().getEntities()) {
             if (((int) this.getLocation().getY()) == ((int) entity.getLocation().getY()) &&
                     ((int) this.getLocation().getX()) == ((int) entity.getLocation().getX()))
             {
