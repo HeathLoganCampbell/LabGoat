@@ -37,12 +37,10 @@ Enter = Okay
 
 
 ## To Do
-* Words
-* restart level
+* Camera tracking?
+* Better textures
+* Better level saves locations
 * smoother location change animation
-
-* Offer multiple levels
-* Main Menu
 * Level editor
 * Particles
 * Saving mechs
