@@ -6,12 +6,12 @@ You must push all boxes onto their targets,
 so the door will open to advance to the next level.
 
 ## Controls
-A = Up
-S = Down
-A = Left
-D = Right
-SPACE = Restart
-Enter = Okay
+A = Up   
+S = Down   
+A = Left   
+D = Right    
+SPACE = Restart    
+Enter = Okay    
 
 ## Tiles
 * water?
