@@ -37,8 +37,16 @@ public class LabGoatGame extends Game
     @Getter
     private Stack<Menu> menus = new Stack<>();
 
+    @Getter
+    private int width;
+    @Getter
+    private int height;
+
+
     public LabGoatGame(int width, int height)
     {
+        this.width = width;
+        this.height = height;
         try {
             this.tiles = Asset.loadBitmap("tiles/tiles.png");
             Font.init(Asset.loadBitmap("tiles/fonts.png"));

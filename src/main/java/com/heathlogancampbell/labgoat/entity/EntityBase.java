@@ -43,7 +43,7 @@ public class EntityBase implements Cloneable
         this.velocity = new Velocity(0, 0);
     }
 
-    public void draw(Bitmap screen)
+    public void draw(Bitmap screen, int cameraOffsetX, int cameraOffsetY)
     {
 
     }

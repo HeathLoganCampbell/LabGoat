@@ -26,12 +26,12 @@ public class PressurePlate extends EntityBase
     }
 
     @Override
-    public void draw(Bitmap screen)
+    public void draw(Bitmap screen, int cameraOffsetX, int cameraOffsetY)
     {
 
         if(this.active)
         {
-            triggerDown.draw(screen, (int) (this.getLocation().getX() * EntityBase.ENTITY_WIDTH), (int) (this.getLocation().getY() * EntityBase.ENTITY_WIDTH));
+            triggerDown.draw(screen, (int) (this.getLocation().getX() * EntityBase.ENTITY_WIDTH) + cameraOffsetX, (int) (this.getLocation().getY() * EntityBase.ENTITY_WIDTH) + cameraOffsetY);
             screen.setPixel(0, 0, 0xFF00CC);
             screen.setPixel(0, 1, 0xFF00CC);
             screen.setPixel(0, 2, 0xFF00CC);
@@ -40,7 +40,7 @@ public class PressurePlate extends EntityBase
         }
         else
         {
-            sprite.draw(screen, (int) (this.getLocation().getX() * EntityBase.ENTITY_WIDTH), (int) (this.getLocation().getY() * EntityBase.ENTITY_WIDTH));
+            sprite.draw(screen, (int) (this.getLocation().getX() * EntityBase.ENTITY_WIDTH) + cameraOffsetX, (int) (this.getLocation().getY() * EntityBase.ENTITY_WIDTH) + cameraOffsetY);
         }
     }
 

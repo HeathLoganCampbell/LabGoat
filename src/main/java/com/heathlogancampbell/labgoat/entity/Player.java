@@ -25,20 +25,20 @@ public class Player extends EntityBase
     }
 
     @Override
-    public void draw(Bitmap screen)
+    public void draw(Bitmap screen, int cameraOffsetX, int cameraOffsetY)
     {
-        sprite.draw(screen, (int) (this.getLocation().getX() * ENTITY_WIDTH), (int) (this.getLocation().getY() * ENTITY_WIDTH));
+        sprite.draw(screen, (int) (this.getLocation().getX() * ENTITY_WIDTH) + cameraOffsetX, (int) (this.getLocation().getY() * ENTITY_WIDTH) + cameraOffsetY);
     }
 
     @Override
     public void tick(InputListener inputListener)
     {
         if(this.getVelocity().getX() == 0 && this.getVelocity().getY() == 0) {
+
             if (inputListener.isPressed(KeyEvent.VK_D)) {
                 this.getVelocity().setX(SPEED_UNIT);
                 this.getVelocity().setY(0);
                 inputListener.setPressed(KeyEvent.VK_D, false);
-                System.out.println("tick");
             }
 
             if (inputListener.isPressed(KeyEvent.VK_A)) {
@@ -69,6 +69,17 @@ public class Player extends EntityBase
         this.getLevel().pushOn(newLoc, this.getVelocity(), this);
         if(this.getLevel().isMovable(newLoc))
         {
+            //0 - 8
+            //1 - 8
+            //is the player in the screen?
+//            int diffX = this.getLevel().getCameraX() + this.getLevel().getGame().getWidth();
+//            int diffY = (int) (this.getLocation().getY() * 32) - this.getLevel().getCameraY();
+//
+//            if(Math.abs(diffX / 32) > 7)
+//                this.getLevel().setCameraX(this.getLevel().getCameraX() - (int) (32 * this.getVelocity().getX()));
+////            this.getLevel().setCameraY(this.getLevel().getCameraY() - (int) (32 * this.getVelocity().getY()));
+
+
             this.getLocation().addVelocity(this.getVelocity());
         }
         this.getVelocity().clear();

@@ -30,10 +30,12 @@ public class GameMenu extends Menu
     private LevelManager levelManager;
     private LabGoatGame game;
 
+
     public GameMenu(LabGoatGame game, Bitmap tiles)
     {
         this.game = game;
         this.tiles = tiles;
+
 
         this.levelManager = new LevelManager(game, tiles);
         List<String> levelNames = this.levelManager.fetchLevelsInDirectory("./");

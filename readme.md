@@ -30,9 +30,7 @@ so the door will open to advance to the next level.
 
 ## To Do
 * Words
-* restart level
 * smoother location change animation
-
 * Offer multiple levels
 * Main Menu
 * Level editor

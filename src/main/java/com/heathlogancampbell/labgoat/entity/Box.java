@@ -21,9 +21,9 @@ public class Box extends EntityBase
     }
 
     @Override
-    public void draw(Bitmap screen)
+    public void draw(Bitmap screen, int cameraOffsetX, int cameraOffsetY)
     {
-        sprite.draw(screen, (int) (this.getLocation().getX() * EntityBase.ENTITY_WIDTH), (int) (this.getLocation().getY() * EntityBase.ENTITY_WIDTH));
+        sprite.draw(screen, (int) (this.getLocation().getX() * EntityBase.ENTITY_WIDTH) + cameraOffsetX, (int) (this.getLocation().getY() * EntityBase.ENTITY_WIDTH) + cameraOffsetY);
     }
 
     @Override

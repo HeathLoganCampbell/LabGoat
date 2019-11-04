@@ -10,10 +10,7 @@ import com.heathlogancampbell.labgoat.entity.Box;
 import com.heathlogancampbell.labgoat.entity.EntityBase;
 import com.heathlogancampbell.labgoat.entity.PressurePlate;
 import com.heathlogancampbell.labgoat.tiles.TileBase;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.awt.event.KeyEvent;
 import java.util.Arrays;
@@ -30,6 +27,11 @@ public class Level implements Cloneable
     @NonNull
     public int[][] data;
     private boolean won = false;
+
+    @Getter @Setter
+    private int cameraX = 0;
+    @Getter @Setter
+    private int cameraY = 0;
 
     @NonNull @Getter
     private LabGoatGame game;
@@ -77,6 +79,26 @@ public class Level implements Cloneable
         {
             this.won = true;
         }
+
+        if(inputListener.isPressed(KeyEvent.VK_UP))
+        {
+            this.cameraY += 2;
+        }
+
+        if(inputListener.isPressed(KeyEvent.VK_DOWN))
+        {
+            this.cameraY -= 2;
+        }
+
+        if(inputListener.isPressed(KeyEvent.VK_LEFT))
+        {
+            this.cameraX += 2;
+        }
+
+        if(inputListener.isPressed(KeyEvent.VK_RIGHT))
+        {
+            this.cameraX -= 2;
+        }
         //move x -> y
 
         //Check clip
@@ -90,14 +112,13 @@ public class Level implements Cloneable
                 TileBase tile = tileRow[x];
                 int tileData = data[y][x];
 
-
-                tile.draw(screen, x * TileBase.TILE_WIDTH, y * TileBase.TILE_WIDTH, tileData);
+                tile.draw(screen, (x * TileBase.TILE_WIDTH) + cameraX, (y * TileBase.TILE_WIDTH) + cameraY, tileData);
             }
         }
 
         for (EntityBase entity : this.entities)
         {
-            entity.draw(screen);
+            entity.draw(screen, cameraX, cameraY);
         }
 
         if(this.won)
