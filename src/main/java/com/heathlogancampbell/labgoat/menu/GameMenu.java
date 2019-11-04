@@ -64,6 +64,13 @@ public class GameMenu extends Menu
             inputListener.setPressed(KeyEvent.VK_SPACE, false);
             return;
         }
+
+        if(inputListener.isPressed(KeyEvent.VK_ESCAPE))
+        {
+            this.game.getMenus().push(new LevelMenu(this.game, this));
+            inputListener.setPressed(KeyEvent.VK_ESCAPE, false);
+            return;
+        }
         this.level.tick(inputListener);
     }
 
