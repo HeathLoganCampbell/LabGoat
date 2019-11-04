@@ -11,6 +11,7 @@ import com.heathlogancampbell.labgoat.level.Level;
 
 import java.awt.event.KeyEvent;
 
+
 public class Player extends EntityBase
 {
     private static final double SPEED_UNIT = 1;

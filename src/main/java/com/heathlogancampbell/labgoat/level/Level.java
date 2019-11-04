@@ -16,11 +16,12 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class Level
+public class Level implements Cloneable
 {
     @NonNull @Getter
     private String name;
@@ -138,4 +139,16 @@ public class Level
     }
 
     //push
+
+    @Override
+    public Level clone()
+    {
+        TileBase[][] tiles = Arrays.stream(this.tiles).map(TileBase[]::clone).toArray(TileBase[][]::new);
+        int[][] data = Arrays.stream(this.data).map(int[]::clone).toArray(int[][]::new);
+        Level level = new Level(this.name, tiles, data, this.game);
+//        for (EntityBase entity : this.entities) {
+//            level.addEntity(entity.clone());
+//        }
+        return level;
+    }
 }

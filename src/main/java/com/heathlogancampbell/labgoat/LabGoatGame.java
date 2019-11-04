@@ -15,6 +15,7 @@ import com.heathlogancampbell.labgoat.level.Level;
 import com.heathlogancampbell.labgoat.level.LevelManager;
 import com.heathlogancampbell.labgoat.level.format.BasicLevelFormat;
 import com.heathlogancampbell.labgoat.menu.GameMenu;
+import com.heathlogancampbell.labgoat.menu.LevelMenu;
 import com.heathlogancampbell.labgoat.menu.MainMenu;
 import com.heathlogancampbell.labgoat.menu.Menu;
 import com.heathlogancampbell.labgoat.tiles.TileBase;
@@ -46,7 +47,10 @@ public class LabGoatGame extends Game
             e.printStackTrace();
         }
         TileBase.initTiles(this.tiles);
-        menus.push(new GameMenu(this, tiles));
+        GameMenu gameMenu = new GameMenu(this, tiles);
+
+        menus.push(gameMenu);
+        menus.push(new LevelMenu(this, gameMenu));
         menus.push(new MainMenu(this));
 
         //Levels

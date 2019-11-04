@@ -13,12 +13,20 @@ import com.heathlogancampbell.labgoat.level.LevelManager;
 import com.heathlogancampbell.labgoat.level.format.BasicLevelFormat;
 import com.heathlogancampbell.labgoat.tiles.TileBase;
 import lombok.Getter;
+import lombok.Setter;
+import org.apache.commons.lang3.SerializationUtils;
+
+import java.awt.event.KeyEvent;
+import java.util.List;
 
 public class GameMenu extends Menu
 {
     private Bitmap tiles;
-    @Getter
+    @Getter @Setter
     private Level level;
+    @Getter @Setter
+    public String levelSerilized;
+    @Getter
     private LevelManager levelManager;
     private LabGoatGame game;
 
@@ -28,7 +36,9 @@ public class GameMenu extends Menu
         this.tiles = tiles;
 
         this.levelManager = new LevelManager(game, tiles);
-        this.level = this.levelManager.load("YeetV1");
+        List<String> levelNames = this.levelManager.fetchLevelsInDirectory("./");
+
+        this.level = this.levelManager.load(levelNames.get(1));
 //        this.loadBasicLevel();
 
 
@@ -48,6 +58,12 @@ public class GameMenu extends Menu
     @Override
     public void tick(InputListener inputListener)
     {
+        if(inputListener.isPressed(KeyEvent.VK_SPACE))
+        {
+            this.level = this.getLevelManager().getLevelFormat().deserialize(this.levelSerilized, this.game, this.tiles);
+            inputListener.setPressed(KeyEvent.VK_SPACE, false);
+            return;
+        }
         this.level.tick(inputListener);
     }
 

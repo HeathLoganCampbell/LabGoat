@@ -12,7 +12,7 @@ import lombok.Setter;
 /**
  * Objects on the map that aren't tied to set a set location on the map
  */
-public class EntityBase
+public class EntityBase implements Cloneable
 {
     public static final int ENTITY_WIDTH = 32;
 

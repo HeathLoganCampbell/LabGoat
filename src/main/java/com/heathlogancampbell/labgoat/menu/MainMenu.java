@@ -37,6 +37,7 @@ public class MainMenu extends Menu
         if(inputListener.isPressed(KeyEvent.VK_ENTER))
         {
             this.game.getMenus().pop();
+            inputListener.setPressed(KeyEvent.VK_ENTER, false);
         }
     }
 }
