@@ -57,3 +57,10 @@ We have objects that we can now collide with!
 ### v0.4
 We can now push boxes
 ![Photo of the 0.4 version](./readme-resources/v0.4.png)
+
+### v0.5
+* Presure plates
+* Level selection Menu
+* Level serialization
+* A few levels
+![Photo of the 0.5 version](./readme-resources/v0.5.png)
