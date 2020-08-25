@@ -71,3 +71,8 @@ We can now push boxes
 * A few levels
 ![Photo of the 0.5 version](./readme-resources/v0.5.png)
 
+### v0.6
+* Imrpove the graphics a little
+* Remove pink blob on top left corner
+![Photo of the 0.6 version](./readme-resources/v0.6.png)
+
