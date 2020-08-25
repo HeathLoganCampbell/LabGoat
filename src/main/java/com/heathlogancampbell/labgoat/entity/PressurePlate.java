@@ -32,11 +32,6 @@ public class PressurePlate extends EntityBase
         if(this.active)
         {
             triggerDown.draw(screen, (int) (this.getLocation().getX() * EntityBase.ENTITY_WIDTH) + cameraOffsetX, (int) (this.getLocation().getY() * EntityBase.ENTITY_WIDTH) + cameraOffsetY);
-            screen.setPixel(0, 0, 0xFF00CC);
-            screen.setPixel(0, 1, 0xFF00CC);
-            screen.setPixel(0, 2, 0xFF00CC);
-            screen.setPixel(1, 0, 0xFF00CC);
-            screen.setPixel(2, 0, 0xFF00CC);
         }
         else
         {

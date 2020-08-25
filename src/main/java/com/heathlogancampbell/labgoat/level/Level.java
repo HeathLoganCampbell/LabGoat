@@ -121,6 +121,16 @@ public class Level implements Cloneable
             entity.draw(screen, cameraX, cameraY);
         }
 
+        for (int y = 0; y < tiles.length; y++) {
+            TileBase[] tileRow = tiles[y];
+            for(int x = 0; x < tileRow.length; x++) {
+                TileBase tile = tileRow[x];
+                int tileData = data[y][x];
+
+                tile.postDraw(screen, (x * TileBase.TILE_WIDTH) + cameraX, (y * TileBase.TILE_WIDTH) + cameraY, tileData);
+            }
+        }
+
         if(this.won)
         {
             Font.text("You won!", screen, 15, 15,0xFF00FF);

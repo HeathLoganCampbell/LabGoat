@@ -7,6 +7,8 @@ import com.heathlogancampbell.labgoat.entity.EntityBase;
 import com.heathlogancampbell.labgoat.entity.EntityType;
 import com.heathlogancampbell.labgoat.level.Level;
 import com.heathlogancampbell.labgoat.tiles.TileBase;
+import com.heathlogancampbell.labgoat.tiles.WallTile;
+import lombok.NonNull;
 
 import javax.swing.text.html.parser.Entity;
 import java.io.File;
@@ -16,9 +18,15 @@ import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class BasicLevelFormat extends LevelFormat
 {
+    private static Random RANDOM = new Random();
+    public static final int TOPPER_BOTTM_MID = 0b10000;
+    public static final int TOPPER_BOTTM_LEFT_CORN = 0b01000;
+    public static final int TOPPER_BOTTM_RIGHT_CORN = 0b11000;
+
     @Override
     public Level deserialize(String input, LabGoatGame game, Bitmap bitmap)
     {
@@ -87,6 +95,114 @@ public class BasicLevelFormat extends LevelFormat
             finalLevel.addEntity(entity);
             entity.setLevel(finalLevel);
         });
+
+        for (int i = 0; i < level.tiles.length; i++)
+        {
+
+            for (int j = 0; j < level.tiles[i].length; j++)
+            {
+
+                level.data[i][j] |= RANDOM.nextInt(1);
+
+                if(level.tiles.length - 1 == i)
+                {
+
+                    TileBase tileBaseAbove = level.tiles[i - 1][j];
+                    if((tileBaseAbove instanceof WallTile) )
+                    {
+                        level.data[i][j] |= 0b100;
+                    }
+                    else
+                    {
+                        level.data[i][j] |= TOPPER_BOTTM_MID;
+                    }
+
+                    continue;
+                }
+
+
+                @NonNull TileBase tileBase = level.tiles[i][j];
+//                if(i == 0) continue;
+                TileBase tileBaseBelow = null;
+                TileBase tileBaseAbove = null;
+                TileBase tileBaseLeft = null;
+                TileBase tileBaseRight = null;
+                if(i != level.tiles.length - 1)
+                    tileBaseBelow = level.tiles[i + 1][j];
+                if(i != 0)
+                    tileBaseAbove = level.tiles[i - 1][j];
+
+                if(j != level.tiles[i].length - 1)
+                    tileBaseLeft = level.tiles[i][j + 1];
+                if(j != 0)
+                    tileBaseRight = level.tiles[i][j - 1];
+
+                if(!(tileBaseBelow instanceof WallTile) && (tileBaseAbove instanceof WallTile))
+                {
+                    level.data[i][j] |= TOPPER_BOTTM_MID;
+                }
+
+                if((tileBaseBelow instanceof WallTile) && (tileBaseAbove instanceof WallTile))
+                {
+//                    level.data[i][j] |= TOPPER_BOTTM_MID;
+                }
+
+                if((tileBaseBelow instanceof WallTile) && (tileBaseAbove instanceof WallTile)  )
+                {
+                    if((tileBaseRight instanceof WallTile) || (tileBaseLeft instanceof WallTile))
+                        level.data[i][j] |= 0b100;
+                }
+
+                if((tileBaseBelow instanceof WallTile) && (tileBaseAbove == null))
+                {
+                    level.data[i][j] |= 0b100;
+                }
+                else
+                {
+                    if(!((tileBaseBelow instanceof WallTile) && (tileBaseAbove instanceof WallTile)))
+                        level.data[i][j] |= TOPPER_BOTTM_MID;
+                }
+
+//                    if((tileBaseBelow instanceof WallTile) && !(tileBaseAbove instanceof WallTile))
+//                    {
+//                        level.data[i][j] |= 2;
+//
+//                        //Dont render
+//                        if(i != 0)
+//                        {
+//                            if((tileBaseAbove instanceof WallTile))
+//                            {
+//                                boolean touchingFloor = true;
+//                                if(j != 0)
+//                                {
+//                                    TileBase tileBaseLeft = level.tiles[i][j - 1];
+//                                    if (!(tileBaseLeft instanceof WallTile))
+//                                    {
+//                                        touchingFloor = false;
+//                                    }
+//                                }
+//
+//                                if(j != level.tiles[i].length - 1)
+//                                {
+//                                    TileBase tileBaseLeft = level.tiles[i][j + 1];
+//                                    if (!(tileBaseLeft instanceof WallTile))
+//                                    {
+//                                        touchingFloor = false;
+//                                    }
+//                                }
+//
+//                                if(touchingFloor)
+//                                    level.data[i][j] |= 4;
+//                            }
+//                        }
+//                        else
+//                        {
+//                            level.data[i][j] |= 4;
+//                        }
+//                    }
+
+            }
+        }
 
         return level;
     }

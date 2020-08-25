@@ -29,12 +29,22 @@ public class TileBase
     {
         this.getSprite().draw(bitmap, x, y);
     }
+    public void postDraw(Bitmap bitmap, int x, int y, int tileData) { }
 
     public static void initTiles(Bitmap bitmap)
     {
         FLOOR = new FloorTile(new Sprite(bitmap, TILE_WIDTH, TILE_WIDTH, TILE_WIDTH,0));
-        WALL = new WallTile(new Sprite(bitmap, TILE_WIDTH, TILE_WIDTH, TILE_WIDTH * 3,0),
-                            new Sprite(bitmap, TILE_WIDTH, TILE_WIDTH, TILE_WIDTH * 4,0));
+        WALL = new WallTile(new Sprite[]{
+                    new Sprite(bitmap, TILE_WIDTH, TILE_WIDTH, TILE_WIDTH * 0,TILE_WIDTH * 2),
+                    new Sprite(bitmap, TILE_WIDTH, TILE_WIDTH, TILE_WIDTH * 1,TILE_WIDTH * 2),
+                    new Sprite(bitmap, TILE_WIDTH, TILE_WIDTH, TILE_WIDTH * 2,TILE_WIDTH * 2)
+                },
+
+                new Sprite[]{
+                    new Sprite(bitmap, TILE_WIDTH, TILE_WIDTH, TILE_WIDTH * 0,TILE_WIDTH * 3),
+                    new Sprite(bitmap, TILE_WIDTH, TILE_WIDTH, TILE_WIDTH * 1,TILE_WIDTH * 3),
+                    new Sprite(bitmap, TILE_WIDTH, TILE_WIDTH, TILE_WIDTH * 2,TILE_WIDTH * 3)
+                });
     }
 
     public static FloorTile FLOOR;
