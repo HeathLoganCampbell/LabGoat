@@ -18,7 +18,7 @@ Enter = Okay
 
 ## Tiles
 * water?
-* Lauchers?
+* Launchers?
     * send the box and you in a random direction
 * TNT?
 * Portals?
@@ -36,7 +36,7 @@ Enter = Okay
     * To unlock hidden levels
     
 ## Story
-* You're a drawf trying to get your gold?
+* You're a dwarf trying to get your gold?
 
 
 ## To Do
@@ -68,14 +68,14 @@ We can now push boxes
 ![Photo of the 0.4 version](./readme-resources/v0.4.png)
 
 ### v0.5
-* Presure plates
+* Pressure plates
 * Level selection Menu
 * Level serialization
 * A few levels
 ![Photo of the 0.5 version](./readme-resources/v0.5.png)
 
 ### v0.6
-* Imrpove the graphics a little
+* Improve the graphics a little
 * Remove pink blob on top left corner
 ![Photo of the 0.6 version](./readme-resources/v0.6.png)
 
